@@ -1,0 +1,57 @@
+<div class="col-sm-4" id="post_<%= post.id %>">
+	<div class="panel panel-danger">
+		<div class="panel-heading">
+			<h4><%= post.title %></h4>
+		</div>
+		<div class="panel-body">
+			<p><%= post.cotent %></p>
+			<div class="btn-group pull-right" role="group" aria-label="Basic example">
+			  <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editpost_<%= post.id %>">Edit</button>
+			  <%= link_to 'Destroy', post, class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure want to delete this post?' }, remote: true%>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Modal -->
+	<%= form_for(post, method: :put, remote: true) do |f| %>
+   <div class="modal fade" id="editpost_<%= post.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+              <h4 class="modal-title" id="myModalLabel">New Post</h4>
+          </div>
+          <div class="modal-body">
+              <% if @post.errors.any? %>
+                <div id="error_explanation">
+                  <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+                  <ul>
+                  <% @post.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                  </ul>
+                </div>
+              <% end %>
+
+              <div class="form-group">
+                <%= f.label :title, class: 'control-label' %>
+                <%= f.text_field :title, class: 'form-control post_title' %>
+              </div>
+
+              <div class="form-group">
+                <%= f.label 'Content', class: 'control-label'  %>
+                <%= f.text_area :cotent, class: 'form-control post_content' %>
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+             <%= f.submit "Save", class: 'btn btn-primary' %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>
