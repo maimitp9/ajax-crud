@@ -30,7 +30,7 @@ class PostsController < ApplicationController
         format.js 
       else
         format.html { render :new }
-        format.js
+        format.js 
       end
     end
   end
