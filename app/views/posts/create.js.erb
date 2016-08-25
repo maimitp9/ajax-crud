@@ -4,9 +4,11 @@
 	});
 <% else %>
 	$('#mynewModal').modal('hide');
-	$('.post_title').val('');
-	$('.post_content').val('');
-	$('#container_post').prepend("<%= j render(@post) %>");
+	$('.post_title_new').val('');
+	$('.post_content_new').val('');
 	$('#post_<%= @post.id %>').hide().fadeIn(1000);
 	$('#error-m').remove();
+	$('#container_post').prepend("<%= j render(@post) %>");
 <% end %>
+
+

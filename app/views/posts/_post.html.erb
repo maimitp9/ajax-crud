@@ -14,7 +14,7 @@
 </div>
 
 <!-- Modal -->
-	<%= form_for(post, method: :put, remote: true) do |f| %>
+	<%= form_for(post, method: :put, remote: true, id: "edit_post_#{post.id}") do |f| %>
    <div class="modal fade" id="editpost_<%= post.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -49,7 +49,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-             <%= f.submit "Save", class: 'btn btn-primary' %>
+             <%= f.submit "Edit", class: 'btn btn-primary' %>
           </div>
         </div>
       </div>
